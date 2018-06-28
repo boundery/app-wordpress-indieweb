@@ -14,18 +14,18 @@ RUN    wget https://downloads.wordpress.org/plugin/sqlite-integration.1.8.1.zip 
     && unzip sqlite-integration.*.zip -d /var/lib/wordpress/wp-content/plugins/ \
     && chown -R www-data /var/lib/wordpress/wp-content/plugins/sqlite-integration \
     && cp /var/lib/wordpress/wp-content/plugins/sqlite-integration/db.php /var/lib/wordpress/wp-content/ \
-    && rm sqlite-integration.*.zip
-
-RUN    wget https://downloads.wordpress.org/plugin/indieweb.3.3.8.zip \
+    && rm sqlite-integration.*.zip \
+    \
+    && wget https://downloads.wordpress.org/plugin/indieweb.3.3.8.zip \
     && unzip indieweb.*.zip -d /var/lib/wordpress/wp-content/plugins/ \
-    && rm indieweb.*.zip
+    && rm indieweb.*.zip \
+    \
+    && wget https://downloads.wordpress.org/theme/independent-publisher.1.8.zip \
+    && unzip independent-publisher.*.zip -d /var/lib/wordpress/wp-content/themes/ \
+    && rm independent-publisher.*.zip
 
 RUN    wget https://raw.github.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && true
-
-RUN    wget https://downloads.wordpress.org/theme/independent-publisher.1.8.zip \
-    && unzip independent-publisher.*.zip -d /var/lib/wordpress/wp-content/themes/ \
-    && rm independent-publisher.*.zip
 
 COPY wp.conf /etc/apache2/sites-available/
 COPY config-default.php /etc/wordpress/
